@@ -19,15 +19,15 @@ jobs:
 
       - name: Install build dependencies
         shell: bash
-        run: sudo ./scripts/install-build-dependencies.sh
+        run: sudo bash ./scripts/install-build-dependencies.sh
 
       - name: Build Obsidian packages
         shell: bash
-        run: ./scripts/build-packages.sh
+        run: bash ./scripts/build-packages.sh
 
       - name: Validate built packages
         shell: bash
-        run: ./scripts/validate-packages.sh
+        run: bash ./scripts/validate-packages.sh
 
       - name: Upload package artifacts
         if: always()

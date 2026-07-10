@@ -9,6 +9,7 @@ Rules-Requires-Root: no
 Package: obsidian-calamares-settings
 Architecture: all
 Depends: ${misc:Depends}, calamares
+Replaces: calamares-settings-debian
 Description: Calamares settings for Obsidian Linux
  Provides installer branding, slideshow, settings, and module configuration
  for the Phase 2 live environment.

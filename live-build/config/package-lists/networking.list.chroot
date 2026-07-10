@@ -2,4 +2,4 @@ curl
 network-manager
 network-manager-gnome
 wireless-regdb
-wpa_supplicant
+wpasupplicant

@@ -33,7 +33,19 @@ for cmd in lb rsync sha256sum; do
   }
 done
 
-mkdir -p "$DIST_DIR" "$WORK_DIR"
+mkdir -p "$DIST_DIR"
+
+# live-build/debootstrap requires native Unix filesystem semantics (notably
+# during package extraction).  A project checked out through WSL at /mnt/c is
+# mounted through 9p and cannot provide those semantics, so stage the build in
+# WSL's native storage while preserving the resulting ISO in dist/.
+if command -v findmnt >/dev/null 2>&1 && [[ "$(findmnt -T "$ROOT_DIR" -no FSTYPE 2>/dev/null)" == "9p" ]]; then
+  WORK_DIR="$(mktemp -d /var/tmp/obsidian-live-build.XXXXXX)"
+  trap 'rm -rf "$WORK_DIR"' EXIT
+  echo "==> Using native WSL staging directory: $WORK_DIR"
+else
+  mkdir -p "$WORK_DIR"
+fi
 
 for pkg in "${required_packages[@]}"; do
   if ! find "$PKG_DIR" -maxdepth 1 -type f -name "${pkg}_*.deb" | grep -q .; then

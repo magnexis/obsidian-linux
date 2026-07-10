@@ -11,7 +11,7 @@ less
 live-boot
 locales
 man-db
-policykit-1
+polkitd
 sudo
 usbutils
 vim-tiny

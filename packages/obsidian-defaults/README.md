@@ -1,3 +1,3 @@
 # obsidian-defaults
 
-Provides system-wide default applications, environment defaults, MIME associations, and user skeleton files for Phase 2.
+Provides system-wide default applications, environment defaults, and MIME associations for Phase 2.

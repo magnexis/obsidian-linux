@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Install Obsidian Linux
-Exec=pkexec calamares
-Icon=obsidian-logo
-Terminal=false
-Categories=System;

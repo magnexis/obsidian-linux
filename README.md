@@ -1,7 +1,7 @@
 # Obsidian Linux
 
 <p align="center">
-  <img src="branding/logos/obsidian-logo.svg" alt="Obsidian Linux logo" width="128" />
+  <img src="branding/logos/obsidian-logo.svg" alt="Obsidian Linux logo" width="230" />
 </p>
 
 <p align="center">
@@ -48,6 +48,44 @@ Real screenshots are required for this project and are intentionally not replace
 - Lightweight first-run welcome flow for initial orientation
 - Customizations delivered through Debian packages rather than ad hoc image edits
 - Structured build, validation, and test documentation
+
+## How the Desktop Starts
+
+There are two similarly named desktop-entry files in this project, but they serve completely different purposes. The distinction matters when changing the live image or debugging why a session does not start.
+
+### The Obsidian desktop session
+
+The actual Wayland session is defined by [packages/obsidian-desktop/src/usr/share/wayland-sessions/obsidian.desktop](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/packages/obsidian-desktop/src/usr/share/wayland-sessions/obsidian.desktop). A display manager reads this file to show **Obsidian** as a login-session choice.
+
+That entry starts [start-obsidian-session](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/packages/obsidian-desktop/src/usr/bin/start-obsidian-session), which prepares the user environment and launches Labwc. The Labwc configuration in `packages/obsidian-desktop/src/etc/xdg/labwc/` defines keybindings, the root menu, autostart behavior, and window-management defaults. Waybar, Wofi, Foot, Mako, Thunar, and the other desktop components are configured by the same `obsidian-desktop` package.
+
+```text
+Display manager
+  -> wayland-sessions/obsidian.desktop
+    -> start-obsidian-session
+      -> Labwc + Waybar + desktop configuration
+```
+
+### The installer shortcut
+
+[install-obsidian-linux.desktop](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/packages/obsidian-desktop/src/usr/share/applications/install-obsidian-linux.desktop) is **not** the desktop session. It is an application-menu and desktop shortcut that launches the Calamares installer with elevated privileges. It is available only to install Obsidian Linux from the live environment.
+
+```text
+install-obsidian-linux.desktop
+  -> pkexec calamares
+  -> install Obsidian Linux to a disk
+```
+
+If you want to change the look, startup behavior, keyboard bindings, panel, launcher, notifications, or session behavior, edit `packages/obsidian-desktop`. If you want to change the installation flow, edit `packages/obsidian-calamares-settings` and the `calamares/` source configuration.
+
+## Packages and Build Artifacts
+
+The repository deliberately separates package source code from generated package files:
+
+- `packages/` is the tracked source tree. Each `packages/obsidian-*` directory is a Debian source package containing its payload under `src/` and its package metadata under `debian/`.
+- `build/artifacts/` is the ignored output directory for generated `.deb` files. It is recreated by `scripts/build-packages.sh` and should not be edited or committed.
+
+For example, the main desktop source package lives at `packages/obsidian-desktop/`, while a built file such as `obsidian-desktop_0.1.0-1_all.deb` appears only under `build/artifacts/` after a successful build.
 
 ## Installation Overview
 

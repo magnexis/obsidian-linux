@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SRC_LIVE_BUILD="$ROOT_DIR/live-build"
 WORK_DIR="$ROOT_DIR/build/live-build"
-PKG_DIR="$ROOT_DIR/build/packages"
+PKG_DIR="$ROOT_DIR/build/artifacts"
 DIST_DIR="$ROOT_DIR/dist"
 ISO_NAME="obsidian-linux-amd64.iso"
 

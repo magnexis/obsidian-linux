@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-PKG_DIR="$ROOT_DIR/build/packages"
+PKG_DIR="$ROOT_DIR/build/artifacts"
 expected=(
   "obsidian-branding"
   "obsidian-center"

@@ -89,7 +89,7 @@ The default live desktop is intentionally simple:
 ## Build Artifact Flow
 
 1. `install-build-dependencies.sh` installs host tools.
-2. `build-packages.sh` builds the Obsidian Debian packages into `build/packages/`.
+2. `build-packages.sh` builds the Obsidian Debian packages into `build/artifacts/`.
 3. `build-iso.sh` stages those packages into `live-build/config/packages.chroot/`.
 4. `live-build` produces a hybrid ISO from a clean working directory.
 5. The final image is copied to `dist/obsidian-linux-amd64.iso`.

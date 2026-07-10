@@ -34,5 +34,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: obsidian-debian-packages
-          path: build/packages/*.deb
+          path: build/artifacts/*.deb
           if-no-files-found: error

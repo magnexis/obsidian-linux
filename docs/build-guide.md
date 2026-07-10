@@ -22,7 +22,7 @@ sudo ./scripts/install-build-dependencies.sh
 Expected output directory:
 
 ```text
-build/packages/
+build/artifacts/
 ```
 
 ## Build the ISO

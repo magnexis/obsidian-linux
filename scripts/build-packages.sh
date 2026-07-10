@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BUILD_DIR="$ROOT_DIR/build/packages"
+BUILD_DIR="$ROOT_DIR/build/artifacts"
 STAGING_DIR="$(mktemp -d)"
 
 cleanup() {

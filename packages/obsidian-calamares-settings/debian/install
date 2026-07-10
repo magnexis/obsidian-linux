@@ -1,0 +1,12 @@
+src/etc/calamares/settings.conf etc/calamares/
+src/usr/share/applications/install-obsidian-linux.desktop usr/share/applications/
+src/usr/share/calamares/branding/obsidian/branding.desc usr/share/calamares/branding/obsidian/
+src/usr/share/calamares/branding/obsidian/icon.svg usr/share/calamares/branding/obsidian/
+src/usr/share/calamares/branding/obsidian/logo.svg usr/share/calamares/branding/obsidian/
+src/usr/share/calamares/branding/obsidian/welcome.svg usr/share/calamares/branding/obsidian/
+src/usr/share/calamares/modules/displaymanager.conf usr/share/calamares/modules/
+src/usr/share/calamares/modules/finished.conf usr/share/calamares/modules/
+src/usr/share/calamares/modules/locale.conf usr/share/calamares/modules/
+src/usr/share/calamares/modules/packages.conf usr/share/calamares/modules/
+src/usr/share/calamares/modules/unpackfs.conf usr/share/calamares/modules/
+src/usr/share/calamares/slideshow/index.html usr/share/calamares/slideshow/

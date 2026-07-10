@@ -1,0 +1,14 @@
+Source: obsidian-system-tools
+Section: utils
+Priority: optional
+Maintainer: Obsidian Linux Team <team@example.invalid>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: obsidian-system-tools
+Architecture: all
+Depends: ${misc:Depends}, dialog, fontconfig, foot, pciutils, procps
+Description: maintenance and diagnostics tools for Obsidian Linux
+ Provides a small terminal user interface for safely reviewing hardware,
+ checking updates, examining kernel information, and running routine cleanup.

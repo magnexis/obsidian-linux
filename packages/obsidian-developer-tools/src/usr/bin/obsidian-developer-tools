@@ -1,0 +1,78 @@
+#!/bin/sh
+set -eu
+
+install_packages() {
+  label="$1"
+  shift
+  if dialog --yesno "Install $label?\n\nPackages: $*" 10 72; then
+    if pkexec sh -c "apt-get update && apt-get install -y $*"; then
+      dialog --msgbox "$label installed successfully." 7 56
+    else
+      dialog --msgbox "$label could not be installed. Check the package sources and output, then try again." 8 72
+    fi
+  fi
+}
+
+status() {
+  printf 'Developer tool status\n\n'
+  for command in git ssh docker podman python3 node cargo go psql mysql redis-cli kubectl gh glab; do
+    if command -v "$command" >/dev/null 2>&1; then
+      printf '%-12s installed\n' "$command"
+    else
+      printf '%-12s not installed\n' "$command"
+    fi
+  done
+}
+
+ssh_keys() {
+  directory="$HOME/.ssh"
+  printf 'SSH keys\n\n'
+  if [ -d "$directory" ]; then
+    find "$directory" -maxdepth 1 -type f ! -name '*.pub' -printf '%f\n' 2>/dev/null || true
+  else
+    printf 'No SSH directory exists yet. Generate a key with:\n\n  ssh-keygen -t ed25519\n'
+  fi
+}
+
+terminal_wizard() {
+  dialog --msgbox 'Terminal defaults are managed through /etc/xdg/foot/foot.ini. Copy it to ~/.config/foot/foot.ini to customize your user profile.' 9 76
+}
+
+while true; do
+  choice="$(dialog --clear --stdout --title 'Obsidian Developer Tools' \
+    --menu 'Install optional development tooling.' 24 90 16 \
+    'status' 'Show installed developer tools' \
+    'ssh' 'Inspect SSH key setup' \
+    'docker' 'Install Docker engine and Compose plugin' \
+    'podman' 'Install Podman and Buildah' \
+    'devcontainers' 'Install Dev Container prerequisites' \
+    'python' 'Install Python virtual-environment tools' \
+    'node' 'Install Node.js and npm' \
+    'rust' 'Install Rust toolchain packages' \
+    'go' 'Install Go toolchain' \
+    'android' 'Install Android SDK tools' \
+    'databases' 'Install PostgreSQL, MySQL, MongoDB, and Redis clients' \
+    'kubernetes' 'Install Kubernetes command-line tools' \
+    'github' 'Install GitHub CLI' \
+    'gitlab' 'Install GitLab CLI' \
+    'terminal' 'Terminal customization guidance' \
+    'exit' 'Close Developer Tools')" || exit 0
+  case "$choice" in
+    status) status | dialog --clear --title 'Developer Tool Status' --textbox - 22 72 ;;
+    ssh) ssh_keys | dialog --clear --title 'SSH Key Manager' --textbox - 18 72 ;;
+    docker) install_packages 'Docker' docker.io docker-compose-plugin ;;
+    podman) install_packages 'Podman' podman buildah ;;
+    devcontainers) install_packages 'Dev Container prerequisites' podman podman-docker buildah ;;
+    python) install_packages 'Python environment tools' python3-venv python3-pip pipx ;;
+    node) install_packages 'Node.js' nodejs npm ;;
+    rust) install_packages 'Rust toolchain' rustc cargo ;;
+    go) install_packages 'Go toolchain' golang ;;
+    android) install_packages 'Android SDK tools' android-sdk ;;
+    databases) install_packages 'Database clients' postgresql-client default-mysql-client mongodb-clients redis-tools ;;
+    kubernetes) install_packages 'Kubernetes tools' kubernetes-client ;;
+    github) install_packages 'GitHub CLI' gh ;;
+    gitlab) install_packages 'GitLab CLI' glab ;;
+    terminal) terminal_wizard ;;
+    exit) clear; exit 0 ;;
+  esac
+done

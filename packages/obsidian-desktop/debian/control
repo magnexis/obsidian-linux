@@ -1,0 +1,14 @@
+Source: obsidian-desktop
+Section: x11
+Priority: optional
+Maintainer: Obsidian Linux Team <team@example.invalid>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: obsidian-desktop
+Architecture: all
+Depends: ${misc:Depends}, foot, grim, labwc, mako-notifier, network-manager-gnome, slurp, swaybg, swayidle, swaylock, thunar, waybar, wofi, xwayland, xdg-user-dirs
+Description: Labwc desktop session for Obsidian Linux
+ Provides the session launcher, system-wide Labwc configuration, Waybar,
+ Wofi, Foot, and supporting desktop helpers.

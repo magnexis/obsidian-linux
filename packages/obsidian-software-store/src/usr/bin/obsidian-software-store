@@ -1,0 +1,100 @@
+#!/bin/sh
+set -eu
+
+tmp_file="$(mktemp)"
+cleanup() {
+  rm -f "$tmp_file"
+}
+trap cleanup EXIT INT TERM
+
+show_text() {
+  title="$1"
+  shift
+  "$@" > "$tmp_file"
+  dialog --clear --title "$title" --textbox "$tmp_file" 22 88
+}
+
+apt_install() {
+  package_name="$1"
+  package_label="$2"
+  if dialog --yesno "Install $package_label from the Debian repositories?" 8 60; then
+    pkexec sh -lc "apt-get update && apt-get install -y '$package_name'" || true
+  fi
+}
+
+flatpak_install() {
+  app_id="$1"
+  app_label="$2"
+  if dialog --yesno "Install $app_label from Flathub for the current user?" 8 64; then
+    flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
+    flatpak install --user -y flathub "$app_id" || true
+  fi
+}
+
+catalog_info() {
+  cat /usr/share/obsidian/software-store/catalog.txt
+}
+
+installed_software() {
+  printf 'Installed Flatpak Applications\n\n'
+  if command -v flatpak >/dev/null 2>&1; then
+    flatpak list --app --columns=application,name 2>/dev/null || printf 'No Flatpak applications found.\n'
+  else
+    printf 'Flatpak is not installed.\n'
+  fi
+}
+
+while true; do
+  choice="$(
+    dialog \
+      --clear \
+      --stdout \
+      --title "Obsidian Software Store" \
+      --menu "Install a curated set of applications for the current Obsidian Linux phase." \
+      22 90 12 \
+      "catalog" "View curated catalog" \
+      "firefox" "Install Firefox ESR (APT)" \
+      "vlc" "Install VLC (APT)" \
+      "gimp" "Install GIMP (APT)" \
+      "libreoffice" "Install LibreOffice (APT)" \
+      "warehouse" "Install Warehouse (Flatpak)" \
+      "flatseal" "Install Flatseal (Flatpak)" \
+      "bottles" "Install Bottles (Flatpak)" \
+      "installed" "Show installed Flatpak apps" \
+      "exit" "Close Software Store"
+  )" || exit 0
+
+  case "$choice" in
+    catalog)
+      show_text "Curated Catalog" catalog_info
+      ;;
+    firefox)
+      apt_install firefox-esr "Firefox ESR"
+      ;;
+    vlc)
+      apt_install vlc "VLC"
+      ;;
+    gimp)
+      apt_install gimp "GIMP"
+      ;;
+    libreoffice)
+      apt_install libreoffice "LibreOffice"
+      ;;
+    warehouse)
+      flatpak_install io.github.flattool.Warehouse "Warehouse"
+      ;;
+    flatseal)
+      flatpak_install com.github.tchx84.Flatseal "Flatseal"
+      ;;
+    bottles)
+      flatpak_install com.usebottles.bottles "Bottles"
+      ;;
+    installed)
+      show_text "Installed Flatpak Applications" installed_software
+      ;;
+    exit)
+      clear
+      exit 0
+      ;;
+  esac
+done

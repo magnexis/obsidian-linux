@@ -1,0 +1,9 @@
+NAME="Obsidian Linux"
+PRETTY_NAME="Obsidian Linux"
+ID=obsidian
+ID_LIKE=debian
+HOME_URL="https://example.invalid/obsidian-linux"
+SUPPORT_URL="https://example.invalid/obsidian-linux/support"
+BUG_REPORT_URL="https://example.invalid/obsidian-linux/issues"
+VERSION="0.1 Development"
+VERSION_ID="0.1"

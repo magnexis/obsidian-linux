@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Obsidian Developer Tools
+Comment=Install optional development toolchains
+Exec=foot sh -lc obsidian-developer-tools
+Icon=obsidian-logo
+Categories=Development;
+Terminal=false

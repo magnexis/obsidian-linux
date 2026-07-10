@@ -1,0 +1,14 @@
+Source: obsidian-desktop-tools
+Section: utils
+Priority: optional
+Maintainer: Obsidian Linux Team <team@example.invalid>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: obsidian-desktop-tools
+Architecture: all
+Depends: ${misc:Depends}, dialog, foot, grim, procps, qrencode, slurp, wf-recorder, wl-clipboard, zbar-tools
+Description: desktop productivity tools for Obsidian Linux
+ Provides terminal-driven screenshot, screen-recording, clipboard, QR-code,
+ and quick-status actions for the Labwc desktop session.

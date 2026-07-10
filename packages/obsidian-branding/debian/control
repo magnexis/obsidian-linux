@@ -1,0 +1,14 @@
+Source: obsidian-branding
+Section: misc
+Priority: optional
+Maintainer: Obsidian Linux Team <team@example.invalid>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: obsidian-branding
+Architecture: all
+Depends: ${misc:Depends}
+Description: branding assets and OS identity for Obsidian Linux
+ Provides the provisional visual identity and system identity files used in
+ the Phase 2 live ISO and installed system.

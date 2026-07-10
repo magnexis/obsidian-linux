@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+  <menu id="root-menu" label="Obsidian">
+    <item label="Foot Terminal">
+      <action name="Execute"><command>foot</command></action>
+    </item>
+    <item label="Obsidian Center">
+      <action name="Execute"><command>obsidian-center</command></action>
+    </item>
+    <item label="Obsidian Software Store">
+      <action name="Execute"><command>foot sh -lc obsidian-software-store</command></action>
+    </item>
+    <item label="Obsidian Desktop Tools">
+      <action name="Execute"><command>foot sh -lc obsidian-desktop-tools</command></action>
+    </item>
+    <item label="Thunar">
+      <action name="Execute"><command>thunar</command></action>
+    </item>
+    <item label="Install Obsidian Linux">
+      <action name="Execute"><command>pkexec calamares</command></action>
+    </item>
+  </menu>
+</openbox_menu>

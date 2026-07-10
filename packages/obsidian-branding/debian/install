@@ -1,0 +1,8 @@
+src/etc/obsidian/os-release etc/obsidian/os-release
+src/usr/share/applications/obsidian-about.desktop usr/share/applications/
+src/usr/share/backgrounds/obsidian/default.svg usr/share/backgrounds/obsidian/
+src/usr/share/grub/themes/obsidian/theme.txt usr/share/grub/themes/obsidian/
+src/usr/share/icons/hicolor/scalable/apps/obsidian-logo.svg usr/share/icons/hicolor/scalable/apps/
+src/usr/share/obsidian/branding/README usr/share/obsidian/branding/
+src/usr/share/plymouth/themes/obsidian/obsidian.plymouth usr/share/plymouth/themes/obsidian/
+src/usr/share/plymouth/themes/obsidian/provisional.svg usr/share/plymouth/themes/obsidian/

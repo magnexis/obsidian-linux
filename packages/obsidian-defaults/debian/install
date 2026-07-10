@@ -1,0 +1,5 @@
+src/etc/environment.d/90-obsidian.conf etc/environment.d/
+src/etc/skel/.config/mimeapps.list etc/skel/.config/
+src/etc/skel/Desktop/install-obsidian-linux.desktop etc/skel/Desktop/
+src/etc/xdg/mimeapps.list etc/xdg/
+src/usr/share/obsidian/defaults/README usr/share/obsidian/defaults/

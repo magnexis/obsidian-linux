@@ -1,0 +1,14 @@
+Source: obsidian-center
+Section: utils
+Priority: optional
+Maintainer: Obsidian Linux Team <team@example.invalid>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: obsidian-center
+Architecture: all
+Depends: ${misc:Depends}, dialog, foot, iproute2, network-manager, obsidian-desktop-tools, obsidian-developer-tools, obsidian-system-tools, procps, systemd, thunar
+Description: lightweight control center for Obsidian Linux
+ Provides a text-based control center for core system overview and common
+ desktop actions in the current repository phase.

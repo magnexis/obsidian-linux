@@ -1,0 +1,5 @@
+Welcome to Obsidian Linux.
+
+This first-run helper is intentionally minimal for the current repository phase.
+Use it to launch the installer, open the terminal, inspect the file manager,
+and review local documentation before deeper system utilities exist.

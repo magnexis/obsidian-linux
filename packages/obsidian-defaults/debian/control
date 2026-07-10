@@ -1,0 +1,14 @@
+Source: obsidian-defaults
+Section: admin
+Priority: optional
+Maintainer: Obsidian Linux Team <team@example.invalid>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: obsidian-defaults
+Architecture: all
+Depends: ${misc:Depends}, xdg-utils
+Description: system defaults for Obsidian Linux
+ Provides environment defaults, MIME handlers, desktop skeleton files, and
+ conservative session defaults for the Phase 2 image.

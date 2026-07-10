@@ -1,0 +1,5 @@
+obsidian-developer-tools (0.1.0) unstable; urgency=medium
+
+  * Add optional developer tools manager.
+
+ -- Obsidian Linux Team <team@example.invalid>  Fri, 10 Jul 2026 14:15:00 -0400

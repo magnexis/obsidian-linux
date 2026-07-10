@@ -1,0 +1,50 @@
+# Generated build outputs
+build/*
+dist/*
+
+# Keep tracked placeholder files
+!build/.gitignore
+!dist/.gitignore
+
+# Debian build artifacts
+*.build
+*.buildinfo
+*.changes
+*.deb
+*.ddeb
+*.tar.xz
+*.tar.gz
+*.dsc
+
+# Live-build working state
+live-build/.build/
+live-build/chroot/
+live-build/binary/
+live-build/cache/
+live-build/local.packages*
+live-build/*.iso
+
+# Temporary runtime files
+*.log
+*.tmp
+*.swp
+*.swo
+.agent-portal-runtime.lock
+workspaces/
+
+# Debhelper build state
+packages/*/debian/debhelper-build-stamp
+packages/*/debian/files
+packages/*/debian/*.debhelper.log
+packages/*/debian/*.substvars
+
+# Website and Flatpak local build state
+website/node_modules/
+website/dist/
+website/*.tsbuildinfo
+flatpak/build-dir/
+flatpak/repo/
+
+# OS/editor files
+.DS_Store
+Thumbs.db

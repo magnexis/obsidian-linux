@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Obsidian Waybar
+Exec=waybar
+OnlyShowIn=Obsidian;
+X-GNOME-Autostart-enabled=true

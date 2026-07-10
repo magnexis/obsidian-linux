@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.obsidianlinux.Welcome</id>
+  <name>Obsidian Welcome</name>
+  <summary>First-run orientation for Obsidian Linux</summary>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <description>
+    <p>A lightweight first-run orientation application for Obsidian Linux.</p>
+  </description>
+  <launchable type="desktop-id">io.obsidianlinux.Welcome.desktop</launchable>
+  <provides><binary>obsidian-welcome</binary></provides>
+  <url type="homepage">https://example.invalid/obsidian-linux</url>
+  <releases><release version="0.1.0" date="2026-07-10"/></releases>
+</component>

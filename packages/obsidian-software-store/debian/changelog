@@ -1,0 +1,11 @@
+obsidian-software-store (0.1.1-1) unstable; urgency=medium
+
+  * Remove redundant essential-package dependencies.
+
+ -- Obsidian Linux Team <team@example.invalid>  Fri, 10 Jul 2026 13:45:00 -0400
+
+obsidian-software-store (0.1.0-1) unstable; urgency=medium
+
+  * Initial package for lightweight software management.
+
+ -- Obsidian Linux Team <team@example.invalid>  Fri, 10 Jul 2026 13:40:00 -0400

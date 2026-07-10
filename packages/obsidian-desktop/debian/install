@@ -1,0 +1,16 @@
+src/etc/xdg/autostart/obsidian-waybar.desktop etc/xdg/autostart/
+src/etc/xdg/foot/foot.ini etc/xdg/foot/
+src/etc/xdg/labwc/autostart etc/xdg/labwc/
+src/etc/xdg/labwc/environment etc/xdg/labwc/
+src/etc/xdg/labwc/menu.xml etc/xdg/labwc/
+src/etc/xdg/labwc/rc.xml etc/xdg/labwc/
+src/etc/xdg/mako/config etc/xdg/mako/
+src/etc/xdg/waybar/config.jsonc etc/xdg/waybar/
+src/etc/xdg/waybar/style.css etc/xdg/waybar/
+src/etc/xdg/wofi/config etc/xdg/wofi/
+src/etc/xdg/wofi/style.css etc/xdg/wofi/
+src/usr/bin/obsidian-launcher usr/bin/
+src/usr/bin/obsidian-power-menu usr/bin/
+src/usr/bin/start-obsidian-session usr/bin/
+src/usr/share/applications/install-obsidian-linux.desktop usr/share/applications/
+src/usr/share/wayland-sessions/obsidian.desktop usr/share/wayland-sessions/

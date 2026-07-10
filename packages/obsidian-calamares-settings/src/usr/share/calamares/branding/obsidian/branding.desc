@@ -1,0 +1,18 @@
+---
+componentName: obsidian
+welcomeStyleCalamares: true
+strings:
+  productName: Obsidian Linux
+  shortProductName: Obsidian
+  version: 0.1 Development
+  versionedName: Obsidian Linux 0.1 Development
+  shortVersionedName: Obsidian 0.1 Development
+images:
+  productLogo: logo.svg
+  productIcon: icon.svg
+  productWelcome: welcome.svg
+style:
+  sidebarBackground: "#12161C"
+  sidebarText: "#F2F4F7"
+  sidebarTextSelect: "#F2F4F7"
+  sidebarTextHighlight: "#7C8CFF"

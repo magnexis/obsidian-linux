@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Obsidian System Tools
+Comment=Updates, hardware information, and maintenance
+Exec=foot sh -lc obsidian-system-tools
+Icon=obsidian-logo
+Categories=System;Settings;
+Terminal=false

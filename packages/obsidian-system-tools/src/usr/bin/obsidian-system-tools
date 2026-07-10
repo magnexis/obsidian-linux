@@ -1,0 +1,166 @@
+#!/bin/sh
+set -eu
+
+tmp_file="$(mktemp)"
+cleanup() { rm -f "$tmp_file"; }
+trap cleanup EXIT INT TERM
+
+show_text() {
+  title="$1"
+  shift
+  "$@" >"$tmp_file"
+  dialog --clear --title "$title" --textbox "$tmp_file" 22 90
+}
+
+hardware_info() {
+  printf 'Hardware summary\n\n'
+  printf 'CPU\n'; lscpu 2>/dev/null | sed -n '1,12p' || true
+  printf '\nPCI devices\n'; lspci -nnk 2>/dev/null || true
+  printf '\nBlock devices\n'; lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS 2>/dev/null || true
+}
+
+kernel_info() {
+  printf 'Running kernel: '; uname -r
+  printf '\nInstalled Linux image packages\n\n'
+  dpkg-query -W -f='${binary:Package}\t${Version}\n' 'linux-image*' 2>/dev/null || printf 'No packaged kernel image was found.\n'
+}
+
+snapshot_info() {
+  printf 'Snapshot support\n\n'
+  if command -v timeshift >/dev/null 2>&1; then
+    printf 'Timeshift is installed. Launch it from a terminal with:\n\n  pkexec timeshift-gtk\n'
+  elif findmnt -n -o FSTYPE / 2>/dev/null | grep -qx btrfs; then
+    printf 'The root filesystem is Btrfs. Install a snapshot manager such as Timeshift to configure snapshots.\n'
+  else
+    printf 'No snapshot manager is installed. Snapshot configuration depends on the filesystem and backup policy.\n'
+  fi
+}
+
+appearance_info() {
+  printf 'Appearance inventory\n\n'
+  printf 'Installed GTK themes\n'; find /usr/share/themes "$HOME/.themes" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sed 's#^.*/##' | sort -u || true
+  printf '\nInstalled icon themes\n'; find /usr/share/icons "$HOME/.icons" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sed 's#^.*/##' | sort -u || true
+  printf '\nWallpapers\n'; find /usr/share/backgrounds "$HOME/Pictures" -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.svg' \) 2>/dev/null | sed -n '1,80p' || true
+}
+
+font_info() {
+  printf 'Installed font families\n\n'
+  if command -v fc-list >/dev/null 2>&1; then
+    fc-list : family 2>/dev/null | tr ',' '\n' | sed 's/^ *//' | sort -fu | sed -n '1,160p'
+  else
+    printf 'fontconfig is not available.\n'
+  fi
+}
+
+startup_info() {
+  printf 'Autostart entries\n\n'
+  for directory in /etc/xdg/autostart "${XDG_CONFIG_HOME:-$HOME/.config}/autostart"; do
+    printf '%s\n' "$directory"
+    if [ -d "$directory" ]; then
+      find "$directory" -maxdepth 1 -type f -name '*.desktop' -printf '  %f\n' 2>/dev/null | sort
+    else
+      printf '  No entries.\n'
+    fi
+    printf '\n'
+  done
+}
+
+boot_repair_info() {
+  printf 'Boot repair guidance\n\n'
+  printf 'Firmware mode: '
+  if [ -d /sys/firmware/efi ]; then printf 'UEFI\n'; else printf 'Legacy BIOS\n'; fi
+  printf 'Running kernel: '; uname -r
+  printf '\nAutomatic bootloader repair is intentionally not run from a live desktop.\n'
+  printf 'Use a live USB, mount the installed system, and repair GRUB only after confirming the target disk and EFI partition.\n'
+}
+
+resource_info() {
+  printf 'Resource monitor\n\nMemory\n'
+  free -h 2>/dev/null || true
+  printf '\nFilesystem usage\n'; df -h -x tmpfs -x devtmpfs 2>/dev/null || true
+  printf '\nTop processes by CPU\n'; ps -eo pid,comm,%cpu,%mem --sort=-%cpu 2>/dev/null | sed -n '1,16p' || true
+}
+
+crash_report() {
+  printf 'Recent high-priority journal entries\n\n'
+  if command -v journalctl >/dev/null 2>&1; then
+    journalctl -b -p warning..alert --no-pager -n 120 2>/dev/null || printf 'The system journal is unavailable to this user.\n'
+  else
+    printf 'journalctl is not available.\n'
+  fi
+}
+
+health_report() {
+  printf 'System health dashboard\n\n'
+  printf 'Kernel: '; uname -r
+  printf 'Uptime: '; uptime -p 2>/dev/null || true
+  printf '\nMemory\n'; free -h 2>/dev/null | sed -n '1,3p' || true
+  printf '\nRoot filesystem\n'; df -h / 2>/dev/null || true
+  printf '\nFailed system services\n'; systemctl --failed --no-legend 2>/dev/null || printf 'No failed services reported.\n'
+  printf '\nPending package upgrades\n'
+  if command -v apt-get >/dev/null 2>&1; then
+    apt-get -s upgrade 2>/dev/null | awk '/^Inst / { count++ } END { printf "%d pending upgrade(s)\\n", count + 0 }'
+  fi
+}
+
+benchmark() {
+  printf 'Lightweight memory throughput benchmark\n\n'
+  printf 'Writing 512 MiB from /dev/zero to /dev/null.\n'
+  dd if=/dev/zero of=/dev/null bs=64M count=8 status=progress 2>&1
+}
+
+run_update() {
+  if dialog --yesno 'Refresh package metadata and apply available upgrades?' 8 64; then
+    if pkexec sh -c 'apt-get update && apt-get -y full-upgrade'; then
+      dialog --msgbox 'Update operation completed. Review any terminal output for package-specific notices.' 8 72
+    else
+      dialog --msgbox 'The update operation did not complete. Check network access and the package sources, then try again.' 8 72
+    fi
+  fi
+}
+
+clean_packages() {
+  if dialog --yesno 'Remove no-longer-needed packages and clean the APT cache?' 8 70; then
+    if pkexec sh -c 'apt-get -y autoremove && apt-get clean'; then
+      dialog --msgbox 'Package cleanup completed.' 7 48
+    else
+      dialog --msgbox 'Package cleanup did not complete.' 7 48
+    fi
+  fi
+}
+
+while true; do
+  choice="$(dialog --clear --stdout --title 'Obsidian System Tools' \
+    --menu 'Maintenance and diagnostics for the current system.' 24 90 16 \
+    'updates' 'Check and install system updates' \
+    'hardware' 'Hardware and driver information' \
+    'kernel' 'Kernel information' \
+    'snapshots' 'Snapshot support status' \
+    'cleanup' 'Clean unused packages' \
+    'appearance' 'Themes and wallpapers' \
+    'fonts' 'Installed fonts' \
+    'startup' 'Startup applications' \
+    'boot' 'Boot repair guidance' \
+    'resources' 'Resource monitor' \
+    'crashes' 'Crash reporter' \
+    'health' 'System health dashboard' \
+    'benchmark' 'Run lightweight benchmark' \
+    'exit' 'Close System Tools')" || exit 0
+
+  case "$choice" in
+    updates) run_update ;;
+    hardware) show_text 'Hardware and Driver Information' hardware_info ;;
+    kernel) show_text 'Kernel Information' kernel_info ;;
+    snapshots) show_text 'Snapshot Support' snapshot_info ;;
+    cleanup) clean_packages ;;
+    appearance) show_text 'Themes and Wallpapers' appearance_info ;;
+    fonts) show_text 'Installed Fonts' font_info ;;
+    startup) show_text 'Startup Applications' startup_info ;;
+    boot) show_text 'Boot Repair Guidance' boot_repair_info ;;
+    resources) show_text 'Resource Monitor' resource_info ;;
+    crashes) show_text 'Crash Reporter' crash_report ;;
+    health) show_text 'System Health' health_report ;;
+    benchmark) show_text 'Benchmark' benchmark ;;
+    exit) clear; exit 0 ;;
+  esac
+done

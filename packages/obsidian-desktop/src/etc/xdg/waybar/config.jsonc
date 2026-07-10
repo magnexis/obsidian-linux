@@ -1,0 +1,30 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "modules-left": ["wlr/workspaces", "custom/launcher"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "network", "tray", "custom/power"],
+  "custom/launcher": {
+    "format": "Obsidian",
+    "on-click": "obsidian-launcher"
+  },
+  "custom/power": {
+    "format": "Power",
+    "on-click": "obsidian-power-menu"
+  },
+  "clock": {
+    "format": "{:%a %b %d  %H:%M}"
+  },
+  "network": {
+    "format-wifi": "Wi-Fi {essid}",
+    "format-ethernet": "Ethernet",
+    "format-disconnected": "Offline"
+  },
+  "pulseaudio": {
+    "format": "Vol {volume}%"
+  },
+  "tray": {
+    "spacing": 8
+  }
+}

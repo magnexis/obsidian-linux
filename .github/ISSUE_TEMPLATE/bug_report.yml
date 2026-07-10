@@ -1,0 +1,33 @@
+name: Bug Report
+description: Report a reproducible issue in the build, ISO, installer, or documentation.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is happening?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction Steps
+      description: Include the exact commands used.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Build Environment
+      description: Host OS, architecture, and tool versions.
+    validations:
+      required: true

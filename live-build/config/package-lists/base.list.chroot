@@ -1,0 +1,17 @@
+apt-config-auto-update
+btrfs-progs
+ca-certificates
+dialog
+dbus-user-session
+desktop-base
+dosfstools
+file
+flatpak
+less
+live-boot
+locales
+man-db
+policykit-1
+sudo
+usbutils
+vim-tiny

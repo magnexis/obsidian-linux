@@ -1,0 +1,132 @@
+#!/bin/sh
+set -eu
+
+tmp_file="$(mktemp)"
+cleanup() {
+  rm -f "$tmp_file"
+}
+trap cleanup EXIT INT TERM
+
+show_box() {
+  title="$1"
+  shift
+  "$@" > "$tmp_file"
+  dialog --clear --title "$title" --textbox "$tmp_file" 22 84
+}
+
+system_summary() {
+  os_name="$(awk -F= '/^PRETTY_NAME=/{gsub(/"/, "", $2); print $2}' /etc/os-release 2>/dev/null || printf 'Unknown\n')"
+  host_name="$(hostname 2>/dev/null || printf 'unknown\n')"
+  kernel="$(uname -r 2>/dev/null || printf 'unknown\n')"
+  uptime_value="$(uptime -p 2>/dev/null || printf 'unknown\n')"
+  mem_total="$(awk '/MemTotal:/ {printf "%.0f MiB\n", $2/1024}' /proc/meminfo 2>/dev/null || printf 'unknown\n')"
+
+  printf 'Obsidian Linux Control Center\n\n'
+  printf 'Operating system: %s\n' "$os_name"
+  printf 'Hostname: %s\n' "$host_name"
+  printf 'Kernel: %s\n' "$kernel"
+  printf 'Uptime: %s\n' "$uptime_value"
+  printf 'Memory total: %s\n' "$mem_total"
+}
+
+network_status() {
+  printf 'Network Status\n\n'
+  if command -v nmcli >/dev/null 2>&1; then
+    nmcli general status || true
+    printf '\n'
+    nmcli device status || true
+  else
+    printf 'nmcli is not available.\n'
+  fi
+}
+
+audio_status() {
+  printf 'Audio Services\n\n'
+  for service in pipewire wireplumber; do
+    status="$(systemctl --user is-active "$service" 2>/dev/null || printf 'inactive')"
+    printf '%s: %s\n' "$service" "$status"
+  done
+}
+
+while true; do
+  choice="$(
+    dialog \
+      --clear \
+      --stdout \
+      --title "Obsidian Center" \
+      --menu "Unified system management for the current Obsidian Linux phase." \
+      20 78 12 \
+      "summary" "System summary" \
+      "network" "Network status" \
+      "audio" "Audio services" \
+      "store" "Open Obsidian Software Store" \
+      "tools" "Open System Tools" \
+      "desktop" "Open Desktop Tools" \
+      "developer" "Open Developer Tools" \
+      "installer" "Launch Calamares installer" \
+      "terminal" "Open Foot terminal" \
+      "files" "Open Thunar file manager" \
+      "welcome" "Open Obsidian Welcome" \
+      "exit" "Close Obsidian Center"
+  )" || exit 0
+
+  case "$choice" in
+    summary)
+      show_box "System Summary" system_summary
+      ;;
+    network)
+      show_box "Network Status" network_status
+      ;;
+    audio)
+      show_box "Audio Status" audio_status
+      ;;
+    store)
+      if command -v obsidian-software-store >/dev/null 2>&1; then
+        foot sh -lc obsidian-software-store &
+      else
+        dialog --msgbox "Obsidian Software Store is not installed." 8 54
+      fi
+      ;;
+    tools)
+      if command -v obsidian-system-tools >/dev/null 2>&1; then
+        foot sh -lc obsidian-system-tools &
+      else
+        dialog --msgbox "Obsidian System Tools is not installed." 8 54
+      fi
+      ;;
+    desktop)
+      if command -v obsidian-desktop-tools >/dev/null 2>&1; then
+        foot sh -lc obsidian-desktop-tools &
+      else
+        dialog --msgbox "Obsidian Desktop Tools is not installed." 8 54
+      fi
+      ;;
+    developer)
+      if command -v obsidian-developer-tools >/dev/null 2>&1; then
+        foot sh -lc obsidian-developer-tools &
+      else
+        dialog --msgbox "Obsidian Developer Tools is not installed." 8 54
+      fi
+      ;;
+    installer)
+      pkexec calamares || true
+      ;;
+    terminal)
+      foot &
+      ;;
+    files)
+      thunar &
+      ;;
+    welcome)
+      if command -v obsidian-welcome >/dev/null 2>&1; then
+        obsidian-welcome --force || true
+      else
+        dialog --msgbox "Obsidian Welcome is not installed." 8 48
+      fi
+      ;;
+    exit)
+      clear
+      exit 0
+      ;;
+  esac
+done

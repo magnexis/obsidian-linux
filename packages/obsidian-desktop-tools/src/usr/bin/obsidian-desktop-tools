@@ -1,0 +1,82 @@
+#!/bin/sh
+set -eu
+
+recording_pid_file="${XDG_RUNTIME_DIR:-/tmp}/obsidian-screen-recording.pid"
+output_dir="${XDG_PICTURES_DIR:-$HOME/Pictures}"
+mkdir -p "$output_dir"
+
+screenshot() {
+  target="$output_dir/obsidian-screenshot-$(date +%Y%m%d-%H%M%S).png"
+  if geometry="$(slurp)"; then
+    grim -g "$geometry" "$target"
+    wl-copy < "$target" 2>/dev/null || true
+    dialog --msgbox "Screenshot saved to:\n$target" 8 72
+  fi
+}
+
+toggle_recording() {
+  if [ -f "$recording_pid_file" ] && kill -0 "$(cat "$recording_pid_file")" 2>/dev/null; then
+    kill "$(cat "$recording_pid_file")"
+    rm -f "$recording_pid_file"
+    dialog --msgbox 'Screen recording stopped.' 7 44
+    return
+  fi
+
+  target="$output_dir/obsidian-recording-$(date +%Y%m%d-%H%M%S).mp4"
+  wf-recorder -f "$target" >/dev/null 2>&1 &
+  printf '%s\n' "$!" > "$recording_pid_file"
+  dialog --msgbox "Screen recording started. Select this action again to stop it.\n\nOutput:\n$target" 10 72
+}
+
+clipboard() {
+  printf 'Clipboard contents\n\n'
+  if command -v wl-paste >/dev/null 2>&1; then
+    wl-paste --no-newline 2>/dev/null || printf 'Clipboard is empty or unavailable.\n'
+  fi
+}
+
+qr_code() {
+  value="$(dialog --stdout --inputbox 'Enter text or a URL to encode as a QR code.' 8 72)" || return
+  target="$output_dir/obsidian-qr-$(date +%Y%m%d-%H%M%S).png"
+  printf '%s' "$value" | qrencode -o "$target"
+  dialog --msgbox "QR code saved to:\n$target" 8 72
+}
+
+scan_qr_code() {
+  image="$(dialog --stdout --inputbox 'Enter the path to a QR-code image.' 8 72)" || return
+  if [ ! -f "$image" ]; then
+    dialog --msgbox 'The selected image does not exist.' 7 48
+    return
+  fi
+  zbarimg --quiet "$image" 2>/dev/null | sed 's/^QR-Code://' | dialog --clear --title 'QR Code Result' --textbox - 12 84
+}
+
+quick_status() {
+  printf 'Quick settings status\n\n'
+  command -v nmcli >/dev/null 2>&1 && nmcli general status || true
+  printf '\nAudio\n'
+  command -v wpctl >/dev/null 2>&1 && wpctl get-volume @DEFAULT_AUDIO_SINK@ || true
+  printf '\nBattery\n'
+  upower -e 2>/dev/null | grep battery | head -n 1 | xargs -r upower -i 2>/dev/null || printf 'No battery device reported.\n'
+}
+
+while true; do
+  choice="$(dialog --clear --stdout --title 'Obsidian Desktop Tools' \
+    --menu 'Desktop productivity actions.' 18 78 8 \
+    'screenshot' 'Capture a selected screen area' \
+    'record' 'Start or stop screen recording' \
+    'clipboard' 'View current clipboard text' \
+    'qr' 'Generate a QR code image' \
+    'scan-qr' 'Decode a QR code image' \
+    'status' 'View quick settings status' \
+    'exit' 'Close Desktop Tools')" || exit 0
+  case "$choice" in
+    screenshot) screenshot ;;
+    record) toggle_recording ;;
+    clipboard) clipboard | dialog --clear --title 'Clipboard' --textbox - 22 84 ;;
+    qr) qr_code ;;
+    scan-qr) scan_qr_code ;;
+    status) quick_status | dialog --clear --title 'Quick Settings' --textbox - 22 84 ;;
+    exit) clear; exit 0 ;;
+  esac
+done

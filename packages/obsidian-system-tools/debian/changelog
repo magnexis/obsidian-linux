@@ -1,0 +1,5 @@
+obsidian-system-tools (0.1.0) unstable; urgency=medium
+
+  * Add initial system maintenance and diagnostics interface.
+
+ -- Obsidian Linux Team <team@example.invalid>  Fri, 10 Jul 2026 13:15:00 -0400

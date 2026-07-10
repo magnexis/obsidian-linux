@@ -1,0 +1,14 @@
+Source: obsidian-software-store
+Section: utils
+Priority: optional
+Maintainer: Obsidian Linux Team <team@example.invalid>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: obsidian-software-store
+Architecture: all
+Depends: ${misc:Depends}, dialog, flatpak, foot
+Description: lightweight software store for Obsidian Linux
+ Provides a curated software catalog with APT and Flatpak install helpers for
+ the current repository phase.

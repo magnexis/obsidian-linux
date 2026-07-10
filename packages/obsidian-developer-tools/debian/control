@@ -1,0 +1,14 @@
+Source: obsidian-developer-tools
+Section: devel
+Priority: optional
+Maintainer: Obsidian Linux Team <team@example.invalid>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: obsidian-developer-tools
+Architecture: all
+Depends: ${misc:Depends}, dialog, foot, git
+Description: optional developer tool installer for Obsidian Linux
+ Provides explicit APT install flows and status views for common developer
+ toolchains, container tools, databases, and source-control clients.

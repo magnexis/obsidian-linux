@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+mkdir -p /etc/skel/Desktop
+cp /usr/share/applications/install-obsidian-linux.desktop /etc/skel/Desktop/
+chmod 0755 /etc/skel/Desktop/install-obsidian-linux.desktop

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Obsidian Center
+Exec=obsidian-center
+Icon=obsidian-logo
+Terminal=true
+Categories=Settings;System;

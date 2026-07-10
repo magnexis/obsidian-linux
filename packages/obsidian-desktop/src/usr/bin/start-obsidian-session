@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+mkdir -p "$HOME/Pictures"
+xdg-user-dirs-update || true
+exec labwc

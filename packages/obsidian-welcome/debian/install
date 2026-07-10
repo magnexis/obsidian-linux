@@ -1,0 +1,4 @@
+src/etc/xdg/autostart/obsidian-welcome.desktop etc/xdg/autostart/
+src/usr/bin/obsidian-welcome usr/bin/
+src/usr/share/applications/obsidian-welcome.desktop usr/share/applications/
+src/usr/share/obsidian/welcome/message.txt usr/share/obsidian/welcome/

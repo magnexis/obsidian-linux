@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#0B0D10"/>
+  <circle cx="980" cy="180" r="180" fill="#181D25"/>
+  <rect x="84" y="84" width="1112" height="552" rx="28" fill="#12161C" stroke="#2A313B" stroke-width="4"/>
+  <text x="120" y="220" fill="#F2F4F7" font-family="sans-serif" font-size="72">Obsidian Linux</text>
+  <text x="120" y="292" fill="#98A2B3" font-family="sans-serif" font-size="28">Provisional installer artwork for Phase 2.</text>
+</svg>

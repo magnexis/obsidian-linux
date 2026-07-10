@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Obsidian Desktop Tools
+Comment=Screenshot, recording, clipboard, and QR tools
+Exec=foot sh -lc obsidian-desktop-tools
+Icon=obsidian-logo
+Categories=Utility;
+Terminal=false

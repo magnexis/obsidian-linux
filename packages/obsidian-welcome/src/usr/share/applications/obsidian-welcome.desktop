@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Obsidian Welcome
+Exec=obsidian-welcome --force
+Icon=obsidian-logo
+Terminal=false
+Categories=System;

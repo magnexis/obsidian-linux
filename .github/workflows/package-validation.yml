@@ -1,0 +1,38 @@
+name: Package Validation
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-and-validate-packages:
+    name: Build and Validate Debian Packages
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        shell: bash
+        run: sudo ./scripts/install-build-dependencies.sh
+
+      - name: Build Obsidian packages
+        shell: bash
+        run: ./scripts/build-packages.sh
+
+      - name: Validate built packages
+        shell: bash
+        run: ./scripts/validate-packages.sh
+
+      - name: Upload package artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: obsidian-debian-packages
+          path: build/packages/*.deb
+          if-no-files-found: error

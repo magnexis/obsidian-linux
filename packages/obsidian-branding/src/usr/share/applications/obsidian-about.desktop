@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=About Obsidian Linux
+Exec=sh -c 'cat /etc/os-release | ${PAGER:-less}'
+Icon=obsidian-logo
+Terminal=true
+Categories=System;

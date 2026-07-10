@@ -1,0 +1,5 @@
+#!/bin/sh
+swaybg -i /usr/share/backgrounds/obsidian/default.svg -m fill &
+mako &
+nm-applet &
+waybar &

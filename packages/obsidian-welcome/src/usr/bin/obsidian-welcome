@@ -1,0 +1,67 @@
+#!/bin/sh
+set -eu
+
+STATE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/obsidian"
+STATE_FILE="$STATE_DIR/welcome-complete"
+MESSAGE_FILE="/usr/share/obsidian/welcome/message.txt"
+
+mkdir -p "$STATE_DIR"
+
+if [ -f "$STATE_FILE" ] && [ "${1:-}" != "--force" ]; then
+  exit 0
+fi
+
+summary_text() {
+  if [ -f "$MESSAGE_FILE" ]; then
+    cat "$MESSAGE_FILE"
+  else
+    printf '%s\n' "Welcome to Obsidian Linux."
+  fi
+}
+
+while true; do
+  choice="$(
+    dialog \
+      --clear \
+      --stdout \
+      --title "Obsidian Welcome" \
+      --menu "$(summary_text)" \
+      20 78 8 \
+      "center" "Open Obsidian Center" \
+      "store" "Open Obsidian Software Store" \
+      "installer" "Launch Calamares installer" \
+      "terminal" "Open Foot terminal" \
+      "files" "Open Thunar file manager" \
+      "docs" "Read local build guide" \
+      "troubleshooting" "Read local troubleshooting guide" \
+      "done" "Finish welcome and do not show again"
+  )" || exit 0
+
+  case "$choice" in
+    center)
+      foot sh -lc obsidian-center &
+      ;;
+    store)
+      foot sh -lc obsidian-software-store &
+      ;;
+    installer)
+      pkexec calamares || true
+      ;;
+    terminal)
+      foot &
+      ;;
+    files)
+      thunar &
+      ;;
+    docs)
+      foot sh -lc 'if [ -f /usr/share/doc/obsidian-linux/build-guide.txt ]; then less /usr/share/doc/obsidian-linux/build-guide.txt; else printf "%s\n" "Build guide not installed in the live image yet."; read -r _; fi' &
+      ;;
+    troubleshooting)
+      foot sh -lc 'if [ -f /usr/share/doc/obsidian-linux/troubleshooting.txt ]; then less /usr/share/doc/obsidian-linux/troubleshooting.txt; else printf "%s\n" "Troubleshooting guide not installed in the live image yet."; read -r _; fi' &
+      ;;
+    done)
+      date -u +"%Y-%m-%dT%H:%M:%SZ" > "$STATE_FILE"
+      exit 0
+      ;;
+  esac
+done

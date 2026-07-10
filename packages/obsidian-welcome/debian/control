@@ -1,0 +1,14 @@
+Source: obsidian-welcome
+Section: utils
+Priority: optional
+Maintainer: Obsidian Linux Team <team@example.invalid>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: obsidian-welcome
+Architecture: all
+Depends: ${misc:Depends}, dialog, foot, thunar
+Description: first-run welcome application for Obsidian Linux
+ Provides a lightweight first-run setup and orientation flow for the
+ Obsidian Linux desktop session.

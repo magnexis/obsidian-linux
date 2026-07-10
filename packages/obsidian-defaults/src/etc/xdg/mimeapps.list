@@ -1,0 +1,5 @@
+[Default Applications]
+inode/directory=thunar.desktop
+text/plain=foot.desktop
+x-scheme-handler/http=firefox-esr.desktop
+x-scheme-handler/https=firefox-esr.desktop

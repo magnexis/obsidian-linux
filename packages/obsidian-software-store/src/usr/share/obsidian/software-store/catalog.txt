@@ -1,0 +1,12 @@
+Obsidian Linux Curated Software Catalog
+
+APT Applications
+- Firefox ESR: web browser
+- VLC: media player
+- GIMP: image editor
+- LibreOffice: office suite
+
+Flatpak Applications
+- Warehouse: Flatpak package browser
+- Flatseal: Flatpak permission manager
+- Bottles: app and compatibility environment manager

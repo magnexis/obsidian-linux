@@ -1,0 +1,3 @@
+src/usr/bin/obsidian-software-store usr/bin/
+src/usr/share/applications/obsidian-software-store.desktop usr/share/applications/
+src/usr/share/obsidian/software-store/catalog.txt usr/share/obsidian/software-store/

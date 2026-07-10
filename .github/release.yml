@@ -1,0 +1,13 @@
+changelog:
+  categories:
+    - title: Distribution Foundation
+      labels:
+        - build
+        - packaging
+        - installer
+    - title: Documentation
+      labels:
+        - documentation
+    - title: Maintenance
+      labels:
+        - chore

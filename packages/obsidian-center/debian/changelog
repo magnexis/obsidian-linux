@@ -1,0 +1,11 @@
+obsidian-center (0.1.1-1) unstable; urgency=medium
+
+  * Add a launcher for Obsidian System Tools.
+
+ -- Obsidian Linux Team <team@example.invalid>  Fri, 10 Jul 2026 13:21:00 -0400
+
+obsidian-center (0.1.0-1) unstable; urgency=medium
+
+  * Initial package for the lightweight control center.
+
+ -- Obsidian Linux Team <team@example.invalid>  Fri, 10 Jul 2026 13:20:00 -0400

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Obsidian Software Store
+Exec=foot sh -lc obsidian-software-store
+Icon=obsidian-logo
+Terminal=false
+Categories=System;PackageManager;

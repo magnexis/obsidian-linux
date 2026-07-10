@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Obsidian Linux
+Comment=Labwc session for Obsidian Linux
+Exec=start-obsidian-session
+Type=Application

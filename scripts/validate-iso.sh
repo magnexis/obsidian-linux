@@ -43,6 +43,10 @@ xorriso -indev "$ISO_PATH" -find /boot -type d >/dev/null 2>&1 || {
   exit 1
 }
 
+# The checks below intentionally use grep -q. Disable pipefail so its early
+# success exit does not turn unsquashfs' subsequent SIGPIPE into a false error.
+set +o pipefail
+
 unsquashfs -ll "$SQUASHFS_PATH" | grep -q 'usr/share/backgrounds/obsidian/default.svg' || {
   echo "error: default wallpaper missing from live filesystem" >&2
   exit 1

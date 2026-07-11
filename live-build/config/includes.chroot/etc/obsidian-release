@@ -1,0 +1,4 @@
+NAME="Obsidian Linux"
+PRETTY_NAME="Obsidian Linux"
+ID=obsidian
+ID_LIKE=debian

@@ -14,3 +14,5 @@ src/usr/bin/obsidian-power-menu usr/bin/
 src/usr/bin/start-obsidian-session usr/bin/
 src/usr/share/applications/install-obsidian-linux.desktop usr/share/applications/
 src/usr/share/wayland-sessions/obsidian.desktop usr/share/wayland-sessions/
+src/usr/share/sddm/themes/obsidian/ usr/share/sddm/themes/obsidian/
+src/etc/sddm.conf.d/obsidian.conf etc/sddm.conf.d/

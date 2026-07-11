@@ -1,4 +1,4 @@
-src/etc/obsidian/os-release etc/obsidian/os-release
+src/etc/obsidian/os-release etc/obsidian/
 src/usr/share/applications/obsidian-about.desktop usr/share/applications/
 src/usr/share/backgrounds/obsidian/default.svg usr/share/backgrounds/obsidian/
 src/usr/share/grub/themes/obsidian/theme.txt usr/share/grub/themes/obsidian/

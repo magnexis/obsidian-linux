@@ -1,0 +1,6 @@
+[SddmGreeterTheme]
+Name=Obsidian
+Description=Obsidian Linux login screen
+Type=sddm-theme
+MainScript=Main.qml
+Theme-Id=obsidian

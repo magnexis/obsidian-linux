@@ -1,5 +1,4 @@
 src/etc/calamares/settings.conf etc/calamares/
-src/usr/share/applications/install-obsidian-linux.desktop usr/share/applications/
 src/usr/share/calamares/branding/obsidian/branding.desc usr/share/calamares/branding/obsidian/
 src/usr/share/calamares/branding/obsidian/icon.svg usr/share/calamares/branding/obsidian/
 src/usr/share/calamares/branding/obsidian/logo.svg usr/share/calamares/branding/obsidian/

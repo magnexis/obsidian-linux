@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+
+install -m 0644 /etc/obsidian-release /etc/os-release
+install -m 0644 /etc/obsidian-release /usr/lib/os-release

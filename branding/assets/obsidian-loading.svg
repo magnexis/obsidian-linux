@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Obsidian Linux loading">
+  <style>
+    @keyframes obsidian-spin { to { transform: rotate(360deg); } }
+    @keyframes obsidian-dash {
+      0% { stroke-dasharray: 1,800; stroke-dashoffset: 0; }
+      50% { stroke-dasharray: 400,400; stroke-dashoffset: -200; }
+      100% { stroke-dasharray: 800,1; stroke-dashoffset: -800; }
+    }
+    .obsidian-loading-circle {
+      transform-origin: center;
+      animation: obsidian-dash 1.5s ease-in-out infinite alternate, obsidian-spin 2s linear infinite;
+    }
+    @media (prefers-reduced-motion: reduce) { .obsidian-loading-circle { animation: none; } }
+  </style>
+  <circle class="obsidian-loading-circle" cx="400" cy="400" r="200" fill="none" stroke="#7C8CFF" stroke-linecap="round" stroke-width="50"/>
+</svg>

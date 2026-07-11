@@ -8,7 +8,7 @@ Rules-Requires-Root: no
 
 Package: obsidian-desktop
 Architecture: all
-Depends: ${misc:Depends}, foot, grim, labwc, mako-notifier, network-manager-gnome, slurp, swaybg, swayidle, swaylock, thunar, waybar, wofi, xwayland, xdg-user-dirs
+Depends: ${misc:Depends}, foot, grim, labwc, mako-notifier, network-manager-gnome, sddm, slurp, swaybg, swayidle, swaylock, thunar, waybar, wofi, xwayland, xdg-user-dirs
 Replaces: foot, labwc, mako-notifier, waybar, wofi
 Description: Labwc desktop session for Obsidian Linux
  Provides the session launcher, system-wide Labwc configuration, Waybar,

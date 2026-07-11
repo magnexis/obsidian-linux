@@ -9,24 +9,29 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/license-MIT-0f172a?style=for-the-badge&logo=open-source-initiative&logoColor=white" alt="MIT License" />
-  <img src="https://img.shields.io/badge/base-Debian%2013-A81D33?style=for-the-badge&logo=debian&logoColor=white" alt="Debian 13" />
-  <img src="https://img.shields.io/badge/display-Wayland-5B6CFF?style=for-the-badge&logo=wayland&logoColor=white" alt="Wayland" />
-  <img src="https://img.shields.io/badge/desktop-Labwc-111827?style=for-the-badge" alt="Labwc" />
-  <img src="https://img.shields.io/badge/installer-Calamares-2563EB?style=for-the-badge" alt="Calamares" />
-  <img src="https://img.shields.io/badge/build-live--build-1F2937?style=for-the-badge" alt="Live Build" />
-  <img src="https://img.shields.io/badge/apps-Flatpak%20Ready-0EA5E9?style=for-the-badge&logo=flatpak&logoColor=white" alt="Flatpak Ready" />
+  <img src="https://img.shields.io/badge/license-MIT-0f172a?style=flat&logo=open-source-initiative&logoColor=white" alt="MIT License" />
+  <img src="https://img.shields.io/badge/base-Debian%2013-A81D33?style=flat&logo=debian&logoColor=white" alt="Debian 13" />
+  <a href="https://www.debian.org/doc/"><img src="https://img.shields.io/badge/Debian%20reskin-Obsidian%20Linux-A81D33?style=flat&logo=debian&logoColor=white" alt="Debian reskin — Obsidian Linux" /></a>
+  <img src="https://img.shields.io/badge/display-Wayland-5B6CFF?style=flat&logo=wayland&logoColor=white" alt="Wayland" />
+  <img src="https://img.shields.io/badge/desktop-Labwc-111827?style=flat" alt="Labwc" />
+  <img src="https://img.shields.io/badge/installer-Calamares-2563EB?style=flat" alt="Calamares" />
+  <img src="https://img.shields.io/badge/build-live--build-1F2937?style=flat" alt="Live Build" />
+  <img src="https://img.shields.io/badge/apps-Flatpak%20Ready-0EA5E9?style=flat&logo=flatpak&logoColor=white" alt="Flatpak Ready" />
 </p>
 
 ## Overview
 
 Obsidian Linux is being developed as a modern Debian-based operating system with a restrained visual identity, a minimal default desktop, and a reproducible build pipeline. The current repository is centered on the distribution foundation: building a bootable live ISO, packaging Obsidian-specific customizations as Debian packages, and integrating a branded Calamares installer.
 
+Obsidian Linux is a Debian reskin and derivative, not an independent upstream distribution. For Debian system administration, packaging, and user documentation, see the [official Debian documentation](https://www.debian.org/doc/).
+
+Brand consistency is enforced from the canonical [Obsidian logo](branding/logos/obsidian-logo.svg): the README, desktop icons, Calamares assets, and GRUB splash all use that mark. The animated [loading indicator](branding/assets/obsidian-loading.svg) follows the same violet-on-obsidian palette and honors reduced-motion preferences.
+
 This repository does not yet claim a completed operating system. It documents and packages the current buildable foundation only.
 
 ## Current Status
 
-- Phase: `0.1 Development`
+- Phase: `0.2.0 Development Preview`
 - Scope verified in-repo: live-build configuration, package sources, branding assets, installer configuration, and developer documentation
 - Automated Linux CI: Ubuntu package build and validation workflow via GitHub Actions
 - Scope still pending external verification: real Debian-host package builds, ISO boot verification, and live screenshot capture
@@ -34,6 +39,8 @@ This repository does not yet claim a completed operating system. It documents an
 ## Hero Screenshot
 
 Real screenshots are required for this project and are intentionally not replaced with mockups. The capture workflow is documented in [docs/screenshot-workflow.md](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/docs/screenshot-workflow.md), and verified screenshots should be stored in [docs/images](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/docs/images).
+
+![Obsidian Linux UEFI boot menu, captured from the verified QEMU ISO boot test](docs/images/obsidian-uefi.png)
 
 ## Feature Highlights
 

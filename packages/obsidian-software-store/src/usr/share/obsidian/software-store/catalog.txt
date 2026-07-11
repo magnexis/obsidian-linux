@@ -6,7 +6,3 @@ APT Applications
 - GIMP: image editor
 - LibreOffice: office suite
 
-Flatpak Applications
-- Warehouse: Flatpak package browser
-- Flatseal: Flatpak permission manager
-- Bottles: app and compatibility environment manager

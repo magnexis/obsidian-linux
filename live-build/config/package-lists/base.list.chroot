@@ -6,7 +6,6 @@ dbus-user-session
 desktop-base
 dosfstools
 file
-flatpak
 less
 live-boot
 locales

@@ -8,7 +8,7 @@ Rules-Requires-Root: no
 
 Package: obsidian-software-store
 Architecture: all
-Depends: ${misc:Depends}, dialog, flatpak, foot
+Depends: ${misc:Depends}, dialog, foot
 Description: lightweight software store for Obsidian Linux
- Provides a curated software catalog with APT and Flatpak install helpers for
- the current repository phase.
+ Provides a curated software catalog with APT install helpers for the current
+ repository phase.

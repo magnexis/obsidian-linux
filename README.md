@@ -16,7 +16,6 @@
   <img src="https://img.shields.io/badge/desktop-Labwc-111827?style=flat" alt="Labwc" />
   <img src="https://img.shields.io/badge/installer-Calamares-2563EB?style=flat" alt="Calamares" />
   <img src="https://img.shields.io/badge/build-live--build-1F2937?style=flat" alt="Live Build" />
-  <img src="https://img.shields.io/badge/apps-Flatpak%20Ready-0EA5E9?style=flat&logo=flatpak&logoColor=white" alt="Flatpak Ready" />
 </p>
 
 ## Overview
@@ -50,7 +49,7 @@ Real screenshots are required for this project and are intentionally not replace
 - Obsidian System Tools for maintenance, diagnostics, health, and resource checks
 - Obsidian Desktop Tools for screenshots, recording, clipboard, QR, and quick status
 - Obsidian Developer Tools for opt-in language, container, database, and CLI setup
-- Obsidian Software Store for curated APT and Flatpak installs
+- Obsidian Software Store for curated APT installs
 - Calamares installer integration with Obsidian branding
 - Lightweight first-run welcome flow for initial orientation
 - Customizations delivered through Debian packages rather than ad hoc image edits
@@ -121,7 +120,6 @@ Build details are documented in:
 - [docs/build-guide.md](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/docs/build-guide.md)
 - [docs/package-guide.md](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/docs/package-guide.md)
 - [docs/testing-guide.md](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/docs/testing-guide.md)
-- [flatpak/README.md](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/flatpak/README.md)
 
 ## Repository Structure
 

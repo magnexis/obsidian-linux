@@ -53,26 +53,6 @@ dist/obsidian-linux-amd64.iso.sha256
 ./scripts/test-iso.sh --memory 4096
 ```
 
-## Build the Welcome Flatpak
-
-The initial sandboxed app is `io.obsidianlinux.Welcome`. Install Flatpak tooling and add Flathub first:
-
-```bash
-sudo apt install flatpak flatpak-builder
-flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-```
-
-Build and install it with:
-
-```bash
-cd flatpak
-flatpak-builder --user --force-clean --install-deps-from=flathub --repo=repo build-dir io.obsidianlinux.Welcome.yml
-flatpak-builder --user --install --force-clean build-dir io.obsidianlinux.Welcome.yml
-flatpak run io.obsidianlinux.Welcome
-```
-
-When building from WSL, stage the `flatpak/` directory inside the Linux filesystem (for example, under `~/`) first. `flatpak-builder` uses FUSE overlays that cannot run from a Windows-mounted path such as `/mnt/c`.
-
 ## Full Phase 2 Workflow
 
 ```bash

@@ -6,5 +6,4 @@ Current scope:
 
 - curated application catalog
 - APT package installs through `pkexec`
-- Flatpak installs through the user session
 - installed software overview

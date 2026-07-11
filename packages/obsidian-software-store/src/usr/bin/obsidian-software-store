@@ -22,26 +22,8 @@ apt_install() {
   fi
 }
 
-flatpak_install() {
-  app_id="$1"
-  app_label="$2"
-  if dialog --yesno "Install $app_label from Flathub for the current user?" 8 64; then
-    flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
-    flatpak install --user -y flathub "$app_id" || true
-  fi
-}
-
 catalog_info() {
   cat /usr/share/obsidian/software-store/catalog.txt
-}
-
-installed_software() {
-  printf 'Installed Flatpak Applications\n\n'
-  if command -v flatpak >/dev/null 2>&1; then
-    flatpak list --app --columns=application,name 2>/dev/null || printf 'No Flatpak applications found.\n'
-  else
-    printf 'Flatpak is not installed.\n'
-  fi
 }
 
 while true; do
@@ -57,10 +39,6 @@ while true; do
       "vlc" "Install VLC (APT)" \
       "gimp" "Install GIMP (APT)" \
       "libreoffice" "Install LibreOffice (APT)" \
-      "warehouse" "Install Warehouse (Flatpak)" \
-      "flatseal" "Install Flatseal (Flatpak)" \
-      "bottles" "Install Bottles (Flatpak)" \
-      "installed" "Show installed Flatpak apps" \
       "exit" "Close Software Store"
   )" || exit 0
 
@@ -79,18 +57,6 @@ while true; do
       ;;
     libreoffice)
       apt_install libreoffice "LibreOffice"
-      ;;
-    warehouse)
-      flatpak_install io.github.flattool.Warehouse "Warehouse"
-      ;;
-    flatseal)
-      flatpak_install com.github.tchx84.Flatseal "Flatseal"
-      ;;
-    bottles)
-      flatpak_install com.usebottles.bottles "Bottles"
-      ;;
-    installed)
-      show_text "Installed Flatpak Applications" installed_software
       ;;
     exit)
       clear

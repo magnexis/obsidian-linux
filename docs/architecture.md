@@ -78,7 +78,7 @@ The default live desktop is intentionally simple:
 
 `obsidian-center` provides a lightweight control surface for system summary, network state, audio-service checks, and common launch actions without introducing a heavyweight settings framework during the current repository phase.
 
-`obsidian-software-store` provides a curated application catalog with conservative APT and Flatpak install flows suited to the current lightweight distribution phase.
+`obsidian-software-store` provides a curated application catalog with conservative APT install flows suited to the current lightweight distribution phase.
 
 `obsidian-system-tools` provides a narrow maintenance interface for updates, cleanup, hardware and driver information, kernel inspection, and snapshot capability detection.
 

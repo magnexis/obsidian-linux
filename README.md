@@ -162,6 +162,10 @@ The repository is prepared for real screenshots only. Required capture targets a
 - [docs/diagrams/boot-sequence.md](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/docs/diagrams/boot-sequence.md)
 - [docs/diagrams/repository-layout.md](/C:/Users/matth/OneDrive/Desktop/company/obsidian-linux/docs/diagrams/repository-layout.md)
 
+## Github Pages
+
+[Visit Docs Site](https://magnexis.github.io/obsidian-linux/)
+
 ## Roadmap
 
 - Complete Debian-host validation of package builds and ISO generation

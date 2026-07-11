@@ -3,6 +3,6 @@ Type=Application
 Name=Obsidian Welcome
 Comment=First-run orientation for Obsidian Linux
 Exec=obsidian-welcome
-Icon=io.obsidianlinux.Welcome
+Icon=io.github.magnexis.obsidian-linux
 Categories=Utility;System;
 Terminal=false

@@ -142,6 +142,10 @@ Build details are documented in:
 - `Obsidian Plasma`: planned future edition, not implemented in this repository state
 - `Obsidian Hypr`: planned future edition, not implemented in this repository state
 
+## Roadmap
+
+See [ROADMAP.md](ROADMAP.md) for upcoming desktop, installer, reliability, and edition goals.
+
 ## Screenshots
 
 The repository is prepared for real screenshots only. Required capture targets and storage conventions are documented in:

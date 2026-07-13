@@ -3,7 +3,8 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD_DIR="$ROOT_DIR/build/artifacts"
-STAGING_DIR="$(mktemp -d)"
+STAGING_DIR="$(mktemp -d --tmpdir=/tmp obsidian-staging.XXXXXX)"
+chmod 700 "$STAGING_DIR"
 
 cleanup() {
   rm -rf "$STAGING_DIR"

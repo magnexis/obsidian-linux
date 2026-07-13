@@ -40,7 +40,8 @@ mkdir -p "$DIST_DIR"
 # mounted through 9p and cannot provide those semantics, so stage the build in
 # WSL's native storage while preserving the resulting ISO in dist/.
 if command -v findmnt >/dev/null 2>&1 && [[ "$(findmnt -T "$ROOT_DIR" -no FSTYPE 2>/dev/null)" == "9p" ]]; then
-  WORK_DIR="$(mktemp -d /var/tmp/obsidian-live-build.XXXXXX)"
+  WORK_DIR="$(mktemp -d --tmpdir=/var/tmp obsidian-live-build.XXXXXX)"
+  chmod 700 "$WORK_DIR"
   trap 'rm -rf "$WORK_DIR"' EXIT
   echo "==> Using native WSL staging directory: $WORK_DIR"
 else
